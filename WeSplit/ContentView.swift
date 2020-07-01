@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
 
     @State private var tapCount = 0
+    @State private var name = ""
 
     var body: some View {
 
@@ -22,8 +23,10 @@ struct ContentView: View {
                 }
 
                 Section {
-                    Text("Hello, world!").padding()
-                    Text("Hello, world!").padding()
+                    TextField("Enter your name", text: $name)
+                        .padding(.all, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                    Text("Your name is \(name)")
+                        .padding()
                 }
 
                 Button("Tap Count:  \(tapCount)") {
