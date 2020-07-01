@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
 
+    let gender = ["Male", "Female"]
+    @State private var selectedGender = "Male"
     @State private var tapCount = 0
     @State private var name = ""
 
@@ -18,8 +20,6 @@ struct ContentView: View {
             Form {
                 Group {
                     Text("Hello, world!").padding()
-                    Text("Hello, world!").padding()
-                    Text("Hello, world!").padding()
                 }
 
                 Section {
@@ -27,6 +27,13 @@ struct ContentView: View {
                         .padding(.all, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                     Text("Your name is \(name)")
                         .padding()
+                }
+
+                Picker("Select Gender", selection: $selectedGender) {
+                    ForEach(0 ..< gender.count) {
+                        Text(self.gender[$0])
+                    }
+                    .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                 }
 
                 Button("Tap Count:  \(tapCount)") {
