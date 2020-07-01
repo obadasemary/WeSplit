@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @State private var tapCount = 0
+
     var body: some View {
 
         NavigationView {
@@ -16,17 +19,15 @@ struct ContentView: View {
                     Text("Hello, world!").padding()
                     Text("Hello, world!").padding()
                     Text("Hello, world!").padding()
-                    Text("Hello, world!").padding()
-                    Text("Hello, world!").padding()
-                    Text("Hello, world!").padding()
                 }
 
                 Section {
                     Text("Hello, world!").padding()
                     Text("Hello, world!").padding()
-                    Text("Hello, world!").padding()
-                    Text("Hello, world!").padding()
-                    Text("Hello, world!").padding()
+                }
+
+                Button("Tap Count:  \(tapCount)") {
+                    self.tapCount += 1
                 }
             }
             .navigationBarTitle(Text("SwiftUI"), displayMode: .inline)
