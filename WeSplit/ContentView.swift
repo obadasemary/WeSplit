@@ -9,36 +9,40 @@ import SwiftUI
 
 struct ContentView: View {
 
-    let gender = ["Male", "Female"]
-    @State private var selectedGender = "Male"
-    @State private var tapCount = 0
-    @State private var name = ""
+//    let gender = ["Male", "Female"]
+//    @State private var selectedGender = "Male"
+//    @State private var tapCount = 0
+//    @State private var name = ""
+
+    @State private var checkAmount = ""
+    @State private var numberOfPepole = 2
+    @State private var tipPercentage = ""
+
+    let tipPercentages = [20, 15, 30 ,60 ,45, 0]
 
     var body: some View {
 
         NavigationView {
             Form {
-                Group {
-                    Text("Hello, world!").padding()
+                Section {
+                    TextField("Amont", text: $checkAmount)
+                        .keyboardType(.decimalPad)
                 }
 
                 Section {
-                    TextField("Enter your name", text: $name)
-                        .padding(.all, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                    Text("Your name is \(name)")
-                        .padding()
+                    Text("$\(checkAmount)")
                 }
-
-                Picker("Select Gender", selection: $selectedGender) {
-                    ForEach(0 ..< gender.count) {
-                        Text(self.gender[$0])
-                    }
-                    .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                }
-
-                Button("Tap Count:  \(tapCount)") {
-                    self.tapCount += 1
-                }
+//
+//                Picker("Select Gender", selection: $selectedGender) {
+//                    ForEach(0 ..< gender.count) {
+//                        Text(self.gender[$0])
+//                    }
+//                    .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+//                }
+//
+//                Button("Tap Count:  \(tapCount)") {
+//                    self.tapCount += 1
+//                }
             }
             .navigationBarTitle(Text("SwiftUI"), displayMode: .inline)
         }
