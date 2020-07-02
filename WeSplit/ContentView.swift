@@ -29,6 +29,12 @@ struct ContentView: View {
                         .keyboardType(.decimalPad)
                 }
 
+                Picker("Number of pepole", selection: $numberOfPepole) {
+                    ForEach(1 ..< 100) {
+                        Text("\($0) pepole")
+                    }
+                }
+
                 Section {
                     Text("$\(checkAmount)")
                 }
@@ -44,7 +50,7 @@ struct ContentView: View {
 //                    self.tapCount += 1
 //                }
             }
-            .navigationBarTitle(Text("SwiftUI"), displayMode: .inline)
+            .navigationBarTitle(Text("WeSplit"), displayMode: .inline)
         }
     }
 }
