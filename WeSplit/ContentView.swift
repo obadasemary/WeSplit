@@ -20,6 +20,19 @@ struct ContentView: View {
 
     let tipPercentages = [10, 15, 20, 25, 0]
 
+    var totalPerPerson: Double {
+
+        let pepoleCount = Double(numberOfPepole + 2)
+        let tipSelection = Double(tipPercentages[tipPercentage])
+        let orderAmount = Double(checkAmount) ?? 0
+
+        let tipValue = orderAmount / 100 * tipSelection
+        let grandTotal = orderAmount + tipValue
+        let amountPerPerson = grandTotal / pepoleCount
+
+        return amountPerPerson
+    }
+
     var body: some View {
 
         NavigationView {
@@ -28,7 +41,7 @@ struct ContentView: View {
                     TextField("Amont", text: $checkAmount)
                         .keyboardType(.decimalPad)
                     Picker("Number of pepole", selection: $numberOfPepole) {
-                        ForEach(1 ..< 100) {
+                        ForEach(2 ..< 101) {
                             Text("\($0) pepole")
                         }
                     }
@@ -44,10 +57,10 @@ struct ContentView: View {
                 }
 
                 Section {
-                    Text("$\(checkAmount)")
+                    Text("₺ \(totalPerPerson, specifier: "%.2f")")
                 }
             }
-            .navigationTitle("WeSplit")
+            .navigationBarTitle("WeSplit")
         }
     }
 }
