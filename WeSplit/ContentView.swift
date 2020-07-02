@@ -16,9 +16,9 @@ struct ContentView: View {
 
     @State private var checkAmount = ""
     @State private var numberOfPepole = 2
-    @State private var tipPercentage = ""
+    @State private var tipPercentage = 2
 
-    let tipPercentages = [20, 15, 30 ,60 ,45, 0]
+    let tipPercentages = [10, 15, 20, 25, 0]
 
     var body: some View {
 
@@ -27,30 +27,27 @@ struct ContentView: View {
                 Section {
                     TextField("Amont", text: $checkAmount)
                         .keyboardType(.decimalPad)
+                    Picker("Number of pepole", selection: $numberOfPepole) {
+                        ForEach(1 ..< 100) {
+                            Text("\($0) pepole")
+                        }
+                    }
                 }
 
-                Picker("Number of pepole", selection: $numberOfPepole) {
-                    ForEach(1 ..< 100) {
-                        Text("\($0) pepole")
+                Section(header: Text("How much tip do you want to leave?")) {
+                    Picker("Tip percentage", selection: $tipPercentage) {
+                        ForEach(0 ..< tipPercentages.count) {
+                            Text("\(self.tipPercentages[$0])%")
+                        }
                     }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
 
                 Section {
                     Text("$\(checkAmount)")
                 }
-//
-//                Picker("Select Gender", selection: $selectedGender) {
-//                    ForEach(0 ..< gender.count) {
-//                        Text(self.gender[$0])
-//                    }
-//                    .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-//                }
-//
-//                Button("Tap Count:  \(tapCount)") {
-//                    self.tapCount += 1
-//                }
             }
-            .navigationBarTitle(Text("WeSplit"), displayMode: .inline)
+            .navigationTitle("WeSplit")
         }
     }
 }
